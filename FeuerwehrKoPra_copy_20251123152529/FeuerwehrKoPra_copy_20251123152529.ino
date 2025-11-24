@@ -6,6 +6,8 @@
 #include <Wire.h>
 #include <Servo.h>
 
+#include "Fahren.h"
+
 Pixy2 mypixy;
 Servo myservo;
 
