@@ -89,6 +89,7 @@ void loop() {
   //-----------------------------------------------------------------------
     //Kies wird von Sensoren: Gyro, Pixycam erkannt
   if(kiesErkennung) {
+    //kies erkennen
     if(kiesErkannt) {
       fahren.stop();
       //Per led oder Bluetooth 

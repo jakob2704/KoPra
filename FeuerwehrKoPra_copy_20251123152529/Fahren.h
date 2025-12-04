@@ -19,15 +19,15 @@ class Fahren
     //Constructor
     Fahren();
     //Methoden
-    void moveGerade(bool dir);
-    void turn(bool dir);
-    void rotate(bool dir);
+    void moveGerade(bool direction);
+    void turn(bool direction);
+    void rotate(bool direction);
     void stop();
   private:
-    short pin1;
-    short pin2;
-    short pin3;
-    short pin4; 
+    short pinLinksVor;
+    short pinRechtsVor;
+    short pinLinksRueck;
+    short pinRechtsRueck; 
 };
 
 #endif
