@@ -7,12 +7,14 @@
 #include <Servo.h>
 
 #include "Fahren.h"
-#include "SensorLib.h"
+#include "Kieserkennung.h"
+#include "Turm.h"
 
 Fahren fahren;
 Pixy2 mypixy;
-Servo myservo;
-//UltrasonicSensor ultra(49, 48);
+Kieserkennung kieserkennung;
+Turm myTurm;
+int angle = 86;
 
 //Variablen
 //-------------------------------------------------------------------------
@@ -20,9 +22,11 @@ Servo myservo;
 
 static short radAbstand = 250;
 static short radUmfang = 200;
-unsigned long boardTime;
+unsigned long kiesTime;
 unsigned long moveTime;
 unsigned long lTime;
+uint8_t r, g, b;
+uint8_t sollR, sollG, sollB;
 bool kiesErkennung;
 bool kiesErkannt;
 bool autoL;
@@ -33,6 +37,10 @@ void setup() {
   kiesErkannt = false;
   autoL = false;
   lTime = 0;
+
+  sollR = 100;
+  sollG = 100;
+  sollB = 100;
 
   //Wire
   Wire.begin();
@@ -46,35 +54,45 @@ void setup() {
   Serial.println(Serial1.available());
 
   //PinModes
-    //LED
-    pinMode(12, OUTPUT);
-    pinMode(13, OUTPUT);
-    //Motoren
-    fahren.setup();
-    //Sensoren
-    mypixy.init();
-    //ultra.begin();
-  
-  //Servomotor
-  myservo.attach(6);
-
+  //LED
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  //Motoren
+  fahren.setup();
+  //Sensoren
+  mypixy.init();
+  myTurm.initTurm();
+  myTurm.turnSensorOn();
 }
 
 void loop() {
   //getimete funktionen werden nicht über delay() sondern über eine Abfrage der timer Variable ausgesetzt, um multitasking zu ermöglichen
+  //myTurm.pitch(86);
+  //myTurm.printSensorReadings();
+  //myTurm.scanForTarget(myTurm.target, 86);
+  //myTurm.servoTestDrive();
 
-  /*if(ultra.update()){
-    float distance = ultra.getValue();
-
-    if(distance >= 0){
-      Serial1.print("Distance: ");
-      Serial1.print(distance);
-      Serail1.println(" cm");
+  if(Serial.available() > 0) {
+    char cmd = Serial.read();
+    switch(cmd){
+      case 'w':
+        angle++;
+        myTurm.pitch(angle);
+        Serial.print("\nUP: ");
+        myTurm.printServoReadings();
+        break;
+      case 's':
+        angle--;
+        myTurm.pitch(angle);
+        Serial.print("\nDOWN: ");
+        myTurm.printServoReadings();
+        break;
     }
-  }*/
-
-  //SerialBluetooth 
-  
+  }
+  myTurm.printSensorReadings();
+  delay(500);
+  /*
+  //SerialBluetooth
   if(Serial1.available() > 0) {
     char DATA = Serial1.read();
     switch(DATA) {
@@ -101,19 +119,24 @@ void loop() {
         fahren.rotate(false, 255);
         break;
     }
-  }
-
+  }*/
+  /*
   //Kieserkennung
   //-----------------------------------------------------------------------
     //Kies wird von Sensoren: Gyro, Pixycam erkannt
   if(kiesErkennung) {
-    //kies erkennen
-    if(kiesErkannt) {
-      fahren.stop();
-      //Per led oder Bluetooth 
+    if(kiesTime - millis() < -200) {
+      //kies erkennen
+      mypixy.changeProg("video");
+      if(mypixy.video.getRGB(mypixy.frameWidth / 2, mypixy.frameHeight / 2, &r, &g, &b)) {
+        kiesTime = millis();
+      }
     }
-    else {
-      fahren.moveGerade(true, 255);
+
+    if(kieserkennung.weichtBodenAb(r, g, b, sollR, sollG, sollB)) {
+      fahren.stop();
+      Serial1.println("Boden wurde erkannt");
+      //LED muss angeschaltet werden und lautsprecher muss Ton ausgeben
     }
   }
 
@@ -171,7 +194,7 @@ void loop() {
     }
 
   }
-  
+  */
 }
 
 

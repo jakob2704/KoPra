@@ -2,9 +2,10 @@
 #ifndef FASTOP_H
 #define FASTOP_H
 
-class fastop{
+class fastop
+{
   public:
-    static void delay(int times);
+    static void delay (int times);
 };
 
 #endif
