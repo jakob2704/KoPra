@@ -10,9 +10,16 @@
 
 
 //Pin numbers on the board
+<<<<<<< Updated upstream
 #define XSHUT_PIN 52
 #define SERVO_PIN 2
 #define PUMP_PIN  10
+=======
+#define XSHUT_PIN 53
+#define SERVO_PIN 45
+#define PUMP_PIN  49
+#define TANK_PIN  47
+>>>>>>> Stashed changes
 
 //Constants
 #define G_EARTH   9.81
@@ -64,6 +71,10 @@ void Turm::initTurm(){
   pinMode(XSHUT_PIN, OUTPUT);
   pinMode(SERVO_PIN, OUTPUT);
   pinMode(PUMP_PIN, OUTPUT);
+<<<<<<< Updated upstream
+=======
+  pinMode(TANK_PIN, OUTPUT);
+>>>>>>> Stashed changes
 
   myServo.attach(SERVO_PIN, 550, 2370);
   myServoPitch = ZERO_PITCH;
@@ -124,20 +135,29 @@ void Turm::jiggle (uint8_t firingAngle)
     {
       myServo.write(firingAngle + i);
       myServoPitch += i;
+<<<<<<< Updated upstream
       delay(SPRAY_THROTTLE);
+=======
+      fastop::delayMillisBlock(SPRAY_THROTTLE);
+>>>>>>> Stashed changes
     }
 
     for(int i = -SPRAY_ANGLE; i > SPRAY_ANGLE; i--)
     {
       myServo.write(myServoPitch + i);
       myServoPitch += i;
+<<<<<<< Updated upstream
       delay(SPRAY_THROTTLE);
+=======
+      fastop::delayMillisBlock(SPRAY_THROTTLE);
+>>>>>>> Stashed changes
     }
   }
   pitch(firingAngle);
 }
 
 //calculates the firing angle from a known target position and muzzlevelocity
+<<<<<<< Updated upstream
 uint8_t Turm::calculateFiringAngle (ZielPosition &target, uint8_t muzzleVelocity)
 {
   float x_z = cos(target.angle) * target.range;
@@ -145,6 +165,21 @@ uint8_t Turm::calculateFiringAngle (ZielPosition &target, uint8_t muzzleVelocity
   float gxz = G_EARTH*x_z*x_z/(muzzleVelocity*muzzleVelocity*2);
 
   return (uint8_t) atan ( (x_z - sqrt( x_z*x_z - 4*gxz*(Y_0 - y_z - gxz) ) )/gxz );
+=======
+uint16_t Turm::calculateFiringAngle (ZielPosition &target, uint16_t muzzleVelocity)
+{
+
+  float x_z = cos(target.angle) * target.range;
+  float y_z = sin(target.angle) * target.range;
+  float gxz = G_EARTH*x_z*x_z/(muzzleVelocity*muzzleVelocity*2*1000);
+  Serial.println("CALC:");
+  Serial.println(x_z);
+  Serial.println(y_z);
+  Serial.println(gxz);
+  uint16_t temp = (uint16_t) atan ( (x_z - sqrt( x_z*x_z - 4*gxz*(Y_0 - y_z - gxz) ) )/gxz );
+  Serial.println(temp);
+  return temp;
+>>>>>>> Stashed changes
 }
 
 //Sensor---------------------------------------------------------------------------------------
@@ -162,6 +197,11 @@ uint16_t Turm::sensorGetDistance()
   if(!TOFstateOn) {return -1;}
   uint16_t distance = TOFsensor.readRangeSingleMillimeters();
   if(TOFsensor.timeoutOccurred()) {return -1;}
+<<<<<<< Updated upstream
+=======
+  Serial1.print("\nSensorDistance: ");
+  Serial1.print(distance);
+>>>>>>> Stashed changes
   return distance;
 }
 void Turm::turnSensorOn()
@@ -223,3 +263,11 @@ void Turm::pumpOff()
 {
   digitalWrite(PUMP_PIN, LOW);
 }
+<<<<<<< Updated upstream
+=======
+
+void Turm::refilling()
+{
+  digitalWrite(TANK_PIN, HIGH);
+}
+>>>>>>> Stashed changes

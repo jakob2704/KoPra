@@ -10,12 +10,12 @@
 
 #include "Fahren.h"
 
-#define pinLinksVor     12
-#define pinRechtsVor    10
-#define pinLinksRueck   11
-#define pinRechtsRueck  9
-#define speedPinLinks   13
-#define speedPinRechts  8
+#define pinLinksVor     3
+#define pinRechtsVor    5
+#define pinLinksRueck   4
+#define pinRechtsRueck  6
+#define speedPinLinks   2
+#define speedPinRechts  7
 
 #define FAST 255
 #define SLOW 50
@@ -59,8 +59,8 @@ void Fahren::turn(bool direction, short speed) {
   digitalWrite(pinRechtsVor, rechts);
   digitalWrite(pinLinksRueck, LOW);
   digitalWrite(pinRechtsRueck, LOW);
-  digitalWrite(speedPinLinks, speed);
-  digitalWrite(speedPinRechts, speed);
+  analogWrite(speedPinLinks, speed);
+  analogWrite(speedPinRechts, speed);
 }
 
 //true -> links || false -> rechts
@@ -73,8 +73,8 @@ void Fahren::rotate(bool direction, short speed) {
   digitalWrite(pinRechtsVor, rechts);
   digitalWrite(pinLinksRueck, rechts);
   digitalWrite(pinRechtsRueck, links);
-  digitalWrite(speedPinLinks, speed);
-  digitalWrite(speedPinRechts, speed);
+  analogWrite(speedPinLinks, speed);
+  analogWrite(speedPinRechts, speed);
 }
 
 void Fahren::stop() {
@@ -82,6 +82,6 @@ void Fahren::stop() {
   digitalWrite(pinRechtsVor, LOW);
   digitalWrite(pinLinksRueck, LOW);
   digitalWrite(pinRechtsRueck, LOW);
-  digitalWrite(speedPinLinks, LOW);
-  digitalWrite(speedPinRechts, LOW);
+  analogWrite(speedPinLinks, 0);
+  analogWrite(speedPinRechts, 0);
 }
