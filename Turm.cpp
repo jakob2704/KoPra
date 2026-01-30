@@ -11,14 +11,20 @@
 
 //Pin numbers on the board
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #define XSHUT_PIN 52
 #define SERVO_PIN 2
 #define PUMP_PIN  10
 =======
+=======
+>>>>>>> Stashed changes
 #define XSHUT_PIN 53
 #define SERVO_PIN 45
 #define PUMP_PIN  49
 #define TANK_PIN  47
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 //Constants
@@ -72,6 +78,10 @@ void Turm::initTurm(){
   pinMode(SERVO_PIN, OUTPUT);
   pinMode(PUMP_PIN, OUTPUT);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  pinMode(TANK_PIN, OUTPUT);
+>>>>>>> Stashed changes
 =======
   pinMode(TANK_PIN, OUTPUT);
 >>>>>>> Stashed changes
@@ -136,7 +146,11 @@ void Turm::jiggle (uint8_t firingAngle)
       myServo.write(firingAngle + i);
       myServoPitch += i;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       delay(SPRAY_THROTTLE);
+=======
+      fastop::delayMillisBlock(SPRAY_THROTTLE);
+>>>>>>> Stashed changes
 =======
       fastop::delayMillisBlock(SPRAY_THROTTLE);
 >>>>>>> Stashed changes
@@ -147,7 +161,11 @@ void Turm::jiggle (uint8_t firingAngle)
       myServo.write(myServoPitch + i);
       myServoPitch += i;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       delay(SPRAY_THROTTLE);
+=======
+      fastop::delayMillisBlock(SPRAY_THROTTLE);
+>>>>>>> Stashed changes
 =======
       fastop::delayMillisBlock(SPRAY_THROTTLE);
 >>>>>>> Stashed changes
@@ -158,6 +176,7 @@ void Turm::jiggle (uint8_t firingAngle)
 
 //calculates the firing angle from a known target position and muzzlevelocity
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 uint8_t Turm::calculateFiringAngle (ZielPosition &target, uint8_t muzzleVelocity)
 {
   float x_z = cos(target.angle) * target.range;
@@ -166,6 +185,8 @@ uint8_t Turm::calculateFiringAngle (ZielPosition &target, uint8_t muzzleVelocity
 
   return (uint8_t) atan ( (x_z - sqrt( x_z*x_z - 4*gxz*(Y_0 - y_z - gxz) ) )/gxz );
 =======
+=======
+>>>>>>> Stashed changes
 uint16_t Turm::calculateFiringAngle (ZielPosition &target, uint16_t muzzleVelocity)
 {
 
@@ -179,6 +200,9 @@ uint16_t Turm::calculateFiringAngle (ZielPosition &target, uint16_t muzzleVeloci
   uint16_t temp = (uint16_t) atan ( (x_z - sqrt( x_z*x_z - 4*gxz*(Y_0 - y_z - gxz) ) )/gxz );
   Serial.println(temp);
   return temp;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 
@@ -198,6 +222,11 @@ uint16_t Turm::sensorGetDistance()
   uint16_t distance = TOFsensor.readRangeSingleMillimeters();
   if(TOFsensor.timeoutOccurred()) {return -1;}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  Serial1.print("\nSensorDistance: ");
+  Serial1.print(distance);
+>>>>>>> Stashed changes
 =======
   Serial1.print("\nSensorDistance: ");
   Serial1.print(distance);
@@ -264,10 +293,17 @@ void Turm::pumpOff()
   digitalWrite(PUMP_PIN, LOW);
 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 
 void Turm::refilling()
 {
   digitalWrite(TANK_PIN, HIGH);
+<<<<<<< Updated upstream
+}
+>>>>>>> Stashed changes
+=======
 }
 >>>>>>> Stashed changes

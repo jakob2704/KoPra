@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 #ifndef FASTOP_H
 #define FASTOP_H
@@ -10,6 +11,8 @@ class fastop
 };
 
 =======
+=======
+>>>>>>> Stashed changes
 
 #ifndef FASTOP_H
 #define FASTOP_H
@@ -22,5 +25,8 @@ class fastop
     static bool delayMillisBlock  (unsigned long time);
 };
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 #endif

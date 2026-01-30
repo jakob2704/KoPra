@@ -11,15 +11,21 @@ class Turm
     
   //Pin numbers on the board
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   #define XSHUT_PIN 29
   #define SERVO_PIN 23
   #define PUMPE_PIN 28
 =======
+=======
+>>>>>>> Stashed changes
   #define XSHUT_PIN 52
   #define SERVO_PIN 5
   #define PUMP_PIN  27
   #define TANK_PIN  29
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
   //Constants
@@ -58,7 +64,11 @@ class Turm
   void      fireOnTarget (ZielPosition &target);
   void      jiggle (uint8_t firingAngle);
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   uint8_t   calculateFiringAngle (ZielPosition &target, uint8_t muzzleVelocity);
+=======
+  uint16_t  calculateFiringAngle (ZielPosition &target, uint16_t muzzleVelocity);
+>>>>>>> Stashed changes
 =======
   uint16_t  calculateFiringAngle (ZielPosition &target, uint16_t muzzleVelocity);
 >>>>>>> Stashed changes
@@ -75,7 +85,13 @@ class Turm
   void      pumpOn();
   void      pumpOff();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     VL53L0X TOFsensor;
+=======
+  void      refilling();
+  
+  VL53L0X TOFsensor;
+>>>>>>> Stashed changes
 =======
   void      refilling();
   

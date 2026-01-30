@@ -9,6 +9,7 @@
   #include <stdio.h>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #include "Fahren.h"
 #include "Kieserkennung.h"
 #include "Turm.h"
@@ -31,6 +32,19 @@ int angle = 86;
   uint16_t addingr, addingg, addingb, pixyCounter;
 >>>>>>> Stashed changes
 
+=======
+  #include "Fahren.h"
+  #include "Turm.h"
+
+  Fahren fahren;
+  Pixy2 myPixy;
+  Turm myTurm;
+  int angle = 86;
+  uint8_t r, g, b, pixyDistance;
+  uint8_t width, height, scanWidthStart, scanWidthEnd, scanHeightStart, scanHeightEnd;
+  uint16_t addingr, addingg, addingb, pixyCounter;
+
+>>>>>>> Stashed changes
   #define LED_PIN_R 13
   #define LED_PIN_L 12
 
@@ -63,6 +77,7 @@ int angle = 86;
 
     autoL = false;
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
   //PinModes
   //LED
@@ -169,6 +184,35 @@ void loop() {
     myPixy.setLamp(1, 0);
     myPixy.changeProg("video");
 
+=======
+    //Wire
+    Wire.begin();
+    Wire.setClock(100000);
+
+    //Serial
+    Serial1.begin(9600);
+    Serial1.println("Serial Started");
+    Serial.begin(115200);
+    Serial.println("Serial Started");
+    Serial.println(Serial1.available());
+
+    //PinModes
+    //LED
+    pinMode(LED_PIN_L, OUTPUT);
+    pinMode(LED_PIN_R, OUTPUT);
+    //Motoren
+    fahren.setup();
+    //Sensoren
+    myPixy.init();
+    myTurm.initTurm();
+    myTurm.turnSensorOn();
+
+    Serial.println("initSuccesfull");
+
+    myPixy.setLamp(1, 0);
+    myPixy.changeProg("video");
+
+>>>>>>> Stashed changes
     width = myPixy.frameWidth;
     height = myPixy.frameHeight;
 
@@ -210,6 +254,9 @@ void loop() {
         digitalWrite(LED_PIN_L, HIGH);
         digitalWrite(LED_PIN_R, LOW);
         LED_L_ON = true;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       }
     }
@@ -400,8 +447,11 @@ int bodenerkennung(){
     addingb = addingb / pixyCounter;
   }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   */
 =======
+=======
+>>>>>>> Stashed changes
 
   pixyCounter = 0;
 
@@ -425,6 +475,9 @@ int bodenerkennung(){
     return 2;
     }
     else{return 0;}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
 

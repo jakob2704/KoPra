@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 #include "fastop.h"
 
@@ -10,6 +11,8 @@ static void fastop::delay(int times)
     times--;
   }
 =======
+=======
+>>>>>>> Stashed changes
 
 #include <Arduino.h>
 #include "fastop.h"
@@ -43,5 +46,8 @@ static bool fastop::delayMillisBlock(unsigned long time)
   while(millis() - last <= time){}
 
   return true;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }
