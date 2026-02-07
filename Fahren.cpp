@@ -10,10 +10,10 @@
 
 #include "Fahren.h"
 
-#define pinLinksVor     3
-#define pinRechtsVor    5
-#define pinLinksRueck   4
-#define pinRechtsRueck  6
+#define pinLinksVor     5
+#define pinRechtsVor    3
+#define pinLinksRueck   6
+#define pinRechtsRueck  4
 #define speedPinLinks   2
 #define speedPinRechts  7
 

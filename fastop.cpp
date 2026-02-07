@@ -1,18 +1,3 @@
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-#include "fastop.h"
-
-//assembly delay function
-static void fastop::delay(int times)
-{
-  while (times > 0){
-    __asm__ __volatile__ ("nop");
-    times--;
-  }
-=======
-=======
->>>>>>> Stashed changes
 
 #include <Arduino.h>
 #include "fastop.h"
@@ -46,8 +31,4 @@ static bool fastop::delayMillisBlock(unsigned long time)
   while(millis() - last <= time){}
 
   return true;
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
